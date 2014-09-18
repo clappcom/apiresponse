@@ -30,7 +30,7 @@ class ApiResponse implements \JsonSerializable
     protected $status = '';
     protected $code = '';
     protected $data = array();
-    protected $message = '';
+    protected $function = '';
     protected $response = array();
 	
 	/**
@@ -39,8 +39,8 @@ class ApiResponse implements \JsonSerializable
 	 *   * string/int: error constant
 	 *   * array/object: $data
 	 *  default: self::ERROR_GENERAL
-	 *  @param $message (optional)
-	 *   * string: custom error message
+	 *  @param $function (optional)
+	 *   * string: name of the current api function
 	 *   * array/object: $data
 	 *  default: null
 	 *  @param $data (optional)
@@ -48,33 +48,33 @@ class ApiResponse implements \JsonSerializable
 	 *  default: null
 	 */
 	
-    public function __construct($code = self::ERROR_GENERAL, $message = '', $data = array())
+    public function __construct($code = self::ERROR_GENERAL, $function = '', $data = array())
     {
 		if (is_string($code) || is_numeric($code)){ //allow 
-			if (!is_string($message)){
+			if (!is_string($function)){
 				if (is_string($data)){
-					$tmp = $message;
-					$message = $data;
+					$tmp = $function;
+					$function = $data;
 					$data = $tmp;
 				}else {
-					$data = $message;
-					$message = "";
+					$data = $function;
+					$function = "";
 				}
 			}
 		}else {
 			if (!empty($code)){
 				$data = $code;
 				$code = self::SUCCESS_GENERAL;
-				$message = "";
+				$function = "";
 			}else {
 				$code = self::ERROR_GENERAL;
 				$data = array();
-				$message = "";
+				$function = "";
 			}
 		}
 		
 		$this->setCode($code);
-        $this->setMessage($message);
+        $this->setFunction($function);
 		$this->setData($data);
     }
 
@@ -120,13 +120,13 @@ class ApiResponse implements \JsonSerializable
         $this->data = $data;
     }
 
-    public function setMessage($message)
+    public function setFunction($function)
     {
-        $this->message = $message;
+        $this->function = $function;
     }
 
     /*
-     * {'status' : 'error|success', 'statusCode' : 'String'[, 'message' : 'string'[, 'data' : 'array']]}
+     * {'status' : 'error|success', 'statusCode' : 'String'[, 'function' : 'string'[, 'data' : 'array']]}
      */
 
     protected function formatResponse()
@@ -135,8 +135,8 @@ class ApiResponse implements \JsonSerializable
         $this->response['statusCode'] = $this->code;
         if (!empty($this->data))
             $this->response['data'] = $this->data;
-        if (!empty($this->message))
-            $this->response['message'] = $this->message;
+        if (!empty($this->function))
+            $this->response['function'] = $this->function;
 
         return $this->response;
     }
