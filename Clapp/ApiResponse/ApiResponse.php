@@ -65,7 +65,6 @@ class ApiResponse implements \JsonSerializable
 			if (!empty($code)){
 				$data = $code;
 				$code = self::SUCCESS_GENERAL;
-				$function = "";
 			}else {
 				$code = self::ERROR_GENERAL;
 				$data = array();
