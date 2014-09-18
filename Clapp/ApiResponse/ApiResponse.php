@@ -32,12 +32,47 @@ class ApiResponse implements \JsonSerializable
     protected $data = array();
     protected $message = '';
     protected $response = array();
-
-    public function __construct($code, $message = '', $data = array())
+	
+	/**
+	 *  
+	 *  @param $code (optional)
+	 *   * string/int: error constant
+	 *   * array/object: $data
+	 *  default: self::ERROR_GENERAL
+	 *  @param $message (optional)
+	 *   * string: custom error message
+	 *   * array/object: $data
+	 *  default: null
+	 *  @param $data (optional)
+	 *   * array/object: data to be passed
+	 *  default: null
+	 */
+	
+    public function __construct($code = self::ERROR_GENERAL, $message = '', $data = array())
     {
-        $this->setCode($code);
-        $this->setData($data);
+		if (is_string($code) || is_numeric($code)){ //allow 
+			if (!is_string($message)){
+				if (is_string($data)){
+					$tmp = $message;
+					$message = $data;
+					$data = $tmp;
+				}
+			}
+		}else {
+			if (!empty($code)){
+				$data = $code;
+				$code = self::SUCCESS_GENERAL;
+				$message = "";
+			}else {
+				$code = self::ERROR_GENERAL;
+				$data = array();
+				$message = "";
+			}
+		}
+		
+		$this->setCode($code);
         $this->setMessage($message);
+		$this->setData($data);
     }
 
     public function getStatus()
