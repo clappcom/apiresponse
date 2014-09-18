@@ -56,6 +56,9 @@ class ApiResponse implements \JsonSerializable
 					$tmp = $message;
 					$message = $data;
 					$data = $tmp;
+				}else {
+					$data = $message;
+					$message = "";
 				}
 			}
 		}else {
