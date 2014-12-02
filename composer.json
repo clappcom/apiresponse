@@ -1,5 +1,12 @@
 {
     "name": "clapp/apiresponse",
     "description": "Clapp ApiResponse",
-	"version": "1.0"
+    "authors": [
+        {
+            "name": "Gergely Sarosi",
+            "email": "gergely.sarosi@clapp.eu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
 }
