@@ -1,7 +1,7 @@
 {
     "name": "clapp/apiresponse",
-    "version": "0.1.0",
-    "description": "Clapp ApiResponse",
+    "version": "0.1.1",
+    "description": "Clapp ApiResponse class",
     "authors": [
         {
             "name": "Gergely Sarosi",
