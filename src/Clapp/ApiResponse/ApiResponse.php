@@ -4,25 +4,8 @@ namespace Clapp\ApiResponse;
 
 class ApiResponse implements \JsonSerializable
 {
-
-    // GENERAL ERROR MESSAGES
     const ERROR_GENERAL = 'error.general';
-    const ERROR_LOGIN_FIELD_IS_REQUIRED = 'error.login_field_is_required';
-    const ERROR_PASSWORD_FIELD_IS_REQUIRED = 'error.password_field_is_required';
-    const ERROR_WRONG_PASSWORD = 'error.wrong_password';
-    const ERROR_USER_DOES_NOT_EXISTS = 'error.user_does_not_exists';
-    const ERROR_USER_IS_NOT_ACTIVATED = 'error.user_is_not_activated';
-    const ERROR_USER_IS_ALREADY_EXISTS = 'error.user_is_already_exists';
-
-    const ERROR_GAME_DOES_NOT_EXISTS = 'error.game_does_not_exists';
-
-    const ERROR_SIGNIN_REQUIRED = 'error.signin_required';
-
-    // GENERAL SUCCESS MESSAGES
     const SUCCESS_GENERAL = 'success.general';
-    const SUCCESS_SIGNIN = 'success.signin';
-    const SUCCESS_SIGNUP = 'success.signup';
-
 
     const ERROR_STATUS_NAME = 'error';
     const SUCCESS_STATUS_NAME = 'success';
